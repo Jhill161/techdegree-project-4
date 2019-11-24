@@ -33,7 +33,7 @@ class Game {
         this.activePhrase.addPhraseToDisplay();
     };
     handleInteraction() {
-
+        console.log(button)
     };
     checkForWin() {
         const hidden = document.querySelectorAll('.hide').length 
