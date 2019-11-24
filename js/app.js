@@ -10,6 +10,9 @@ btnReset.addEventListener('click',function () {
     game = new Game();
     game.startGame();
 });
+
+// Event listener for all the buttons via event delegation
+
 const selectedKey = document.getElementById('qwerty');
 selectedKey.addEventListener('click', function (event) {
     if (event.target.tagName != 'BUTTON') {
@@ -20,3 +23,4 @@ selectedKey.addEventListener('click', function (event) {
         console.log('working');
     };  
 });
+

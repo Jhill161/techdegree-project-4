@@ -3,12 +3,13 @@
  * Phrase.js */
 
  // Phrase Class
+
 class Phrase {
     constructor(phrase) {
         this.phrase = phrase.toLowerCase();
     };
-    addPhraseToDisplay() {
-        const div = document.createElement('div');
+    addPhraseToDisplay() {                                              // Adds phrase to display by creating 'li' for each
+        const div = document.createElement('div');                      // character after using .split()
         const mainDiv = document.getElementById('phrase')
         mainDiv.appendChild(div);
         div.className = 'section';
@@ -27,12 +28,12 @@ class Phrase {
              };
         });
     };
-    checkLetter(letter) {
+    checkLetter(letter) {                                               // Function to check if letter was correct
         if (this.phrase.includes(letter)) {
             return true;
         }else return false;
     };
-    showMatchedLetter(letter) {
+    showMatchedLetter(letter) {                                         // Shows the matched letter by changing class to show
         const matched = document.querySelectorAll('.hide');
         for (let i = 0; i < matched.length; i++) {
             //console.log(matched[i]);

@@ -2,6 +2,28 @@
  * Project 4 - OOP Game App
  * Game.js */
 
+// Reset function to be called at gameOver()
+function reset() {
+    const list = document.getElementById('phrase');
+    const hearts = document.querySelectorAll('ol img');
+    const buttonsWrong = document.querySelectorAll('.wrong');
+    const buttonsRight = document.querySelectorAll('.chosen');
+    while (list.hasChildNodes()) {                                          // Loop to remove previous phrase list
+        list.removeChild(list.firstChild);
+      };
+    for (let i = 0; i < hearts.length; i++) {                               // Loop to reset lives/hearts
+        hearts[i].src = 'images/liveHeart.png';
+    };
+    for (let i = 0; i < buttonsWrong.length; i++) {                         // Loop to reset wrong buttons
+        buttonsWrong[i].disabled = false;
+        buttonsWrong[i].className = 'key';
+    };
+    for (let i = 0; i < buttonsRight.length; i++) {                         // Loop to reset chosen buttons
+        buttonsRight[i].disabled = false;
+        buttonsRight[i].className = 'key';
+    };
+    
+};
 // Game Class
 
 class Game {
@@ -23,36 +45,47 @@ class Game {
         return phrases;
     };
     //Function to get random Phrase from this.phrases.
-    getRandomPhrase() {
+    getRandomPhrase() {                                                         // Gets a random phrase
         const rand = this.phrases[Math.floor(Math.random() * this.phrases.length)];
         return rand;
     };
-    startGame() {
+    startGame() {                                                               // Calls for new phrase and displays it
         document.getElementById('overlay').style.display = 'none';
         this.activePhrase = this.getRandomPhrase();
         this.activePhrase.addPhraseToDisplay();
     };
-    handleInteraction() {
-        console.log(button)
+    handleInteraction(button) {
+        button.disabled = true;
+        if (game.activePhrase.checkLetter(button.innerHTML) === true) {         // If button selected === letter in phrase
+            button.className = 'chosen';
+            game.activePhrase.showMatchedLetter(button.innerHTML);
+            this.checkForWin();                                                 // Check for win after each correct guess
+            if (this.checkForWin() === true) {                                  // Game over if check for win === true
+                this.gameOver(true);
+            };
+        } else {
+            button.className = 'wrong';
+            game.removeLife();
+        }
     };
-    checkForWin() {
+    checkForWin() {                                                              // Checks if all hidden are now class 'show'
         const hidden = document.querySelectorAll('.hide').length 
         const shown = document.querySelectorAll('show').length   
             if (shown === hidden) {
                 return true;
             }else return false;
     };
-    removeLife() {
+    removeLife() {                                                               // changes 'src' attr image if missed guess
         let missed = 0;
         const hearts = document.querySelectorAll('ol img');
         hearts[this.missed].setAttribute('src','images/lostHeart.png');
         this.missed ++;
-        if (missed === 5) {
+        if (this.missed === 5) {
             this.gameOver(false);
         };
     };
-    gameOver(won) {
-        const overlay = document.getElementById('overlay');
+    gameOver(won) {                                                              // Displays gameover message for win || fail
+        const overlay = document.getElementById('overlay');                      // Calls reset function to reset board
         overlay.style.display = 'show';
         if (won === true) {
             document.getElementById('game-over-message').innerText = 'You Win!';
@@ -62,5 +95,7 @@ class Game {
             overlay.className = 'lose';
         };
         document.getElementById("overlay").style.display = "block";
+        reset();
     };
+
 };
