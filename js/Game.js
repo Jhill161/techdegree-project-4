@@ -26,5 +26,26 @@ class Game {
     getRandomPhrase() {
         const rand = this.phrases[Math.floor(Math.random() * this.phrases.length)];
         return rand;
-    }
+    };
+    startGame() {
+        document.getElementById('overlay').style.display = 'none';
+        this.activePhrase = this.getRandomPhrase();
+        this.activePhrase.addPhraseToDisplay();
+    };
+    handleInteraction() {
+
+    };
+    checkForWin() {
+        const hidden = document.querySelectorAll('.hide').length 
+        const shown = document.querySelectorAll('show').length   
+            if (shown === hidden) {
+                return true;
+            }else return false;
+    };
+    removeLife() {
+
+    };
+    gameOver() {
+
+    };
 };
