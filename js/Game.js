@@ -43,9 +43,24 @@ class Game {
             }else return false;
     };
     removeLife() {
-
+        let missed = 0;
+        const hearts = document.querySelectorAll('ol img');
+        hearts[this.missed].setAttribute('src','images/lostHeart.png');
+        this.missed ++;
+        if (missed === 5) {
+            this.gameOver(false);
+        };
     };
-    gameOver() {
-
+    gameOver(won) {
+        const overlay = document.getElementById('overlay');
+        overlay.style.display = 'show';
+        if (won === true) {
+            document.getElementById('game-over-message').innerText = 'You Win!';
+            overlay.className = 'win';
+        }else {
+            document.getElementById('game-over-message').innerText = 'Sorry, Better luck next time!';
+            overlay.className = 'lose';
+        };
+        document.getElementById("overlay").style.display = "block";
     };
 };
