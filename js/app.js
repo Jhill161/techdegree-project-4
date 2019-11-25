@@ -24,3 +24,7 @@ selectedKey.addEventListener('click', function (event) {
     };  
 });
 
+document.onkeydown = function(key) {
+    console.log(key.key)
+    game.activePhrase.checkLetter(key.key);
+};
