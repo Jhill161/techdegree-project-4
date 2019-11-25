@@ -40,13 +40,56 @@ h2 {
   text-transform: uppercase;
   font-size: var(--font-size-large);
   margin: 0;
+  margin: 20px;
+    -webkit-animation-name: spin;
+    -webkit-animation-duration: 4000ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-name: spin;
+    -moz-animation-duration: 4000ms;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    -ms-animation-name: spin;
+    -ms-animation-duration: 4000ms;
+    -ms-animation-iteration-count: infinite;
+    -ms-animation-timing-function: linear;
+    
+    animation-name: spin;
+    animation-duration: 500ms;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+}
+@-ms-keyframes spin {
+    from { -ms-transform: rotate(0deg); }
+    to { -ms-transform: rotate(360deg); }
+}
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
 }
 
 h1 {
   font-size: 30px;
 }
 
+button:hover {
+  background-color: #4ac0d5;
+}
 button {
+  box-shadow: 2px 2px 5px grey;
   margin: 6px;
   border: 1px solid transparent;
   padding: .5rem 1rem;
@@ -100,7 +143,8 @@ button {
   margin-right: 2px;
   color: transparent;
   background: var(--color-neutral-light);
-  border-radius: 5px;
+  border-radius: 20px;
+  box-shadow: 2px 2px 5px grey;
 }
 
 .space {
@@ -117,7 +161,7 @@ button {
   width: 65px;
   padding: 20px 1px 0 1px;
   margin-right: 2px;
-  border-radius: 5px;
+  border-radius: 20px;
   -webkit-animation-duration: .5s;
   animation-duration: .5s;
 }

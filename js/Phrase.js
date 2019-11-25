@@ -44,3 +44,7 @@ class Phrase {
         };
     };
 };
+document.onkeydown = function(key) {
+    console.log(key)
+    game.activePhrase.checkLetter(key);
+};
