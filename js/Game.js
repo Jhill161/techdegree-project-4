@@ -2,6 +2,8 @@
  * Project 4 - OOP Game App
  * Game.js */
 
+ 
+
 // Reset function to be called at gameOver()
 function reset() {
     const list = document.getElementById('phrase');
