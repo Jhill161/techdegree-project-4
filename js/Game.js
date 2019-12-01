@@ -80,7 +80,7 @@ class Game {
     removeLife() {                                                               // changes 'src' attr image if missed guess
         let missed = 0;
         const hearts = document.querySelectorAll('ol img');
-        hearts[this.missed].setAttribute('src','images/lostHeart.png');
+        hearts[this.missed].setAttribute('src','images/lostHeart.png');          // Gets 'hearts' index of 'missed' and removes via setAttr.
         this.missed ++;
         if (this.missed === 5) {
             this.gameOver(false);
